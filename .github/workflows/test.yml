@@ -1,0 +1,24 @@
+name: Evaluaciones Automatizadas
+
+on: [push, pull_request]  # Ejecuta las pruebas en cada push o PR
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4  # Clona el código desde GitHub
+      
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"  # Usa la versión de Python que necesitas
+
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt  # Asegúrate de tener este archivo con las librerías necesarias
+          pip install pytest  # En caso de que pytest no esté en requirements.txt
+      
+      - name: Ejecutar pruebas
+        run: pytest tests/
