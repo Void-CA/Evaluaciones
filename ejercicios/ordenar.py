@@ -1,2 +1,2 @@
 def ordenar_lista(lista):
-    return sorted(lista)
+    return lista + 1
